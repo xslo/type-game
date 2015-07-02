@@ -1,0 +1,315 @@
+using System;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Media;
+namespace WindowsFormsApplication13
+{
+    public partial class Form1 : Form
+    {
+        Button[] btn = new Button[28];
+        System.Media.SoundPlayer myPlayer = new
+            System.Media.SoundPlayer("music.wav");
+        System.Media.SoundPlayer myPlayer1 = new
+            System.Media.SoundPlayer("correct.wav");
+        public Form1()
+        {
+            myPlayer.Play();
+            myPlayer.PlayLooping();
+            InitializeComponent();
+        }
+        Label newl = new Label();
+        Button[] lab = new Button[27];
+        int count = 0, column = 0, row = 0, c = 0, tep = 0, i = 0,o = 0,s=0;
+        int[,] p = new int[10, 3];
+        string[,] pp = new string[10, 3];
+        int[] b = new int[30];
+        private void button1_Click(object sender, EventArgs e)
+        {
+            label1.Text = "";
+            timer1.Interval = 1500;
+            timer5.Start();
+            s = 0;
+            button3.Enabled = true;
+            button31.Enabled = true;
+            button32.Enabled = true;
+            button33.Enabled = true;
+            btn[1] = button4;
+            btn[2] = button5;
+            btn[3] = button6;
+            btn[4] = button7;
+            btn[5] = button8;
+            btn[6] = button9;
+            btn[7] = button10;
+            btn[8] = button11;
+            btn[9] = button12;
+            btn[10] = button13;
+            btn[11] = button14;
+            btn[12] = button15;
+            btn[13] = button16;
+            btn[14] = button17;
+            btn[15] = button18;
+            btn[16] = button19;
+            btn[17] = button20;
+            btn[18] = button21;
+            btn[19] = button22;
+            btn[20] = button23;
+            btn[21] = button24;
+            btn[22] = button25;
+            btn[23] = button26;
+            btn[24] = button27;
+            btn[25] = button28;
+            btn[26] = button29;
+            btn[27] = button30;
+            for (int z = 1; z < 28; z++)
+            {
+                btn[z].Enabled = false;
+                btn[z].Text = "";
+            }
+            for (int z = 0; z < 27; z++)
+            {
+                lab[z] = null;
+            }
+            timer1.Enabled = true;
+            count = 0;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            timer4.Start();
+            button2.Enabled = false;
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            
+            string[] t = new string[] { "仁科百華", "麻美由真", "北條麻妃", "北川瞳", "妃乃光", "水城奈緒", "中森玲子", "佐藤遙希", "大澤佑香", "翔田千里", "吉澤明歩", "村上涼子", "結城美佐", "川上憂", "成瀬心美", "高坂保奈美", "濱崎里緒", "蕾", "風間由美", "桃谷エリカ", "白石茉莉奈", "波多野結依", "上原亞依", "麻倉優", "蒼井空", "小澤圓", "瀧澤蘿拉", "大石彩香", "杉原優", "橘梨紗", "山下優衣", "一條綺美香", "青山沙希", "由愛可奈", "沖田杏梨", "篠原杏", "葵司", "內山遙", "西海岸", "周防雪子" };//前20位為2014年版DMM的AV女優累積作品排行榜
+            btn[1] = button4;
+            btn[2] = button5;
+            btn[3] = button6;
+            btn[4] = button7;
+            btn[5] = button8;
+            btn[6] = button9;
+            btn[7] = button10;
+            btn[8] = button11;
+            btn[9] = button12;
+            btn[10] = button13;
+            btn[11] = button14;
+            btn[12] = button15;
+            btn[13] = button16;
+            btn[14] = button17;
+            btn[15] = button18;
+            btn[16] = button19;
+            btn[17] = button20;
+            btn[18] = button21;
+            btn[19] = button22;
+            btn[20] = button23;
+            btn[21] = button24;
+            btn[22] = button25;
+            btn[23] = button26;
+            btn[24] = button27;
+            btn[25] = button28;
+            btn[26] = button29;
+            btn[27] = button30;
+
+            Random r = new Random();
+
+            int a = r.Next(1, 28);
+            //btn[a].Text = "a";
+            if (btn[a].Enabled == false)
+            {
+                int aa = r.Next(0, 40);
+
+                lab[count] = btn[a];
+                btn[a].Enabled = true;
+                btn[a].Text = t[aa];
+                count++;
+
+
+
+            }
+            if (count == 27)
+            {
+
+                timer1.Enabled = false;
+                MessageBox.Show("GameOver");
+                button3.Enabled = false;
+                button31.Enabled = false;
+                button32.Enabled = false;
+                button33.Enabled = false;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (column == 0)
+            {
+                tep = timer1.Interval;
+                timer1.Interval = tep / 10;
+                label1.Text = "歡樂的時光，時間總是過得特別快~~~~";
+
+                timer2.Start();
+
+            }
+        }
+
+        private void textBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+
+                    for (int i = 0; i < 27; i++)
+                    {
+                        if (lab[i] != null)
+                        {
+                            if (lab[i].Text == textBox1.Text)
+                            {
+
+                                // myPlayer.Play();
+                                lab[i].Enabled = false;
+                                lab[i].Text = "";
+                                int ii = i;
+                                for (; ii < 26; ii++)
+                                {
+                                    lab[ii] = lab[ii + 1];
+                                }
+                                count -= 1;
+                                break;
+                            }
+                        }
+                    }
+                    textBox1.Text = "";
+                    break;
+
+            }
+        }
+
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            column = 1;
+            row += 1;
+            label2.Text = "冷卻時間" + (10 - row).ToString() + "秒";
+            if (row == 10)
+            {
+                timer1.Interval = tep;
+                row = 0;
+                label1.Text = "";
+                label2.Text = "技能表";
+                column = 0;
+                textBox1.Enabled = true;
+                pictureBox1.Location = new Point(728, 225);
+                pictureBox1.Image = WindowsFormsApplication13.Properties.Resources._481497_307933285975153_22921558_n;
+                timer2.Stop();
+            }
+        }
+
+        private void button31_Click(object sender, EventArgs e)
+        {
+            if (column == 0)
+            {
+                tep = timer1.Interval;
+                label1.Text = "你已經暫停了你的輸入權，專心想想你是否看過以上的演出";
+                textBox1.Enabled = false;
+                timer2.Start();
+            }
+        }
+        PictureBox pic = new PictureBox();
+        private void timer3_Tick(object sender, EventArgs e)
+        {
+            i += 1;
+
+
+
+            this.Controls.Add(pic);
+            pic.BringToFront();//至頂
+            if (i == 2)
+            {
+                pic.Image = WindowsFormsApplication13.Properties.Resources._2;
+            }
+            if (i == 4)
+            {
+                pic.Image = WindowsFormsApplication13.Properties.Resources._3;
+            }
+            if (i == 6)
+            {
+               pic.Image = WindowsFormsApplication13.Properties.Resources._4;
+            }
+            if (i == 8)
+            {
+                pic.Image = WindowsFormsApplication13.Properties.Resources._5;
+            }
+            if (i == 10)
+            {
+                this.Controls.RemoveByKey("a");
+                this.Controls.RemoveByKey("a");
+                this.Controls.RemoveByKey("a");
+                this.Controls.RemoveByKey("a");
+                this.Controls.RemoveByKey("a");
+                this.Controls.RemoveByKey("a");
+                this.Controls.RemoveByKey("a");
+                i = 0;
+                label3.Text = "";
+                timer3.Stop();
+            }
+               
+        }
+
+        private void button33_Click(object sender, EventArgs e)
+        {
+            if (column == 0)
+            {
+                pic.Location = new Point(233, 8);
+                label3.Text = "你的心靈已經動搖了~~~";
+                pic.Name = "a";
+                pic.Size = new Size(1055, 587);
+                pic.Image = WindowsFormsApplication13.Properties.Resources._1;
+                timer3.Start();
+            }
+        }
+
+        private void button32_Click(object sender, EventArgs e)
+        {
+            if (column == 0)
+            {
+                tep = timer1.Interval;
+                label1.Text = "智凱攻擊了敵人，現在處於精盡人亡狀態";
+                pictureBox1.Location = new Point(341, 210);
+                pictureBox1.Image = WindowsFormsApplication13.Properties.Resources._7;
+                pictureBox1.BringToFront();
+                timer2.Start();
+            }
+        }
+
+        private void timer4_Tick(object sender, EventArgs e)
+        {
+            pictureBox2.Visible = false;
+            o += 1;
+            
+            if(o == 2)
+            {
+                pictureBox1.Visible = true;
+            }
+            if(o==3)
+            {
+                label1.Text = "我是楊智凱，為了不要讓我的心靈被惡魔佔領你必須幫我消\r\n除我心中的雜念";
+                timer4.Stop();
+            }
+        }
+
+        private void timer5_Tick(object sender, EventArgs e)
+        {
+            s += 1;
+            if(s==60)
+            {
+                timer1.Interval = 90;
+                label1.Text = "系統通知:時間已過1分鐘 ， 遊戲的節奏將要加快";
+            }
+        }
+    }
+}
